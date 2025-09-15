@@ -5,6 +5,12 @@ spring:
   application:
     name: error-handling
 
+# เข้มงวดเรื่อง key ห้ามเกิน
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+      fail-on-missing-creator-properties: true
+
   datasource:
     url: jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
     username: ${POSTGRES_USER}

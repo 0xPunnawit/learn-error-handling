@@ -29,6 +29,12 @@ public class User {
     @Column(name = "phone_number", nullable = false, unique = true, length = 10)
     private String phoneNumber;
 
+    @Column(name = "first_name", nullable = false, length = 100)
+    private String firstName;
+
+    @Column(name = "last_name", nullable = false, length = 100)
+    private String lastName;
+
     @Column(name = "created_at", nullable = false)
     private OffsetDateTime createdAt;
 }
