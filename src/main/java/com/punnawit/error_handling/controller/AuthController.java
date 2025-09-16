@@ -33,10 +33,21 @@ public class AuthController {
 
     // ================== Login ==================
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
+    public ResponseEntity<LoginResponse> login(
+            @Valid @RequestBody LoginRequest request,
+            jakarta.servlet.http.HttpSession session
+    ) {
         LoginResponse response = authService.login(request);
+        session.setAttribute("USER_ID", response.getUser().getId());
+        session.setAttribute("USER_EMAIL", response.getUser().getEmail());
         // ล็อกอินสำเร็จ ใช้ 200 OK
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(jakarta.servlet.http.HttpSession session) {
+        session.invalidate();
+        return ResponseEntity.ok("Logout successful");
     }
 
 
